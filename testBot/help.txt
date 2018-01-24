@@ -1,0 +1,9 @@
+Commands:
+    !meme - The ultimative Meme-Command. Aparently it has SUPERPOWERS!
+        list - for stupid outsiders
+        add [URL] [name.end] - please, make sure it is an image (or use random large files)
+        remove [name.end] - Memes are here to keep, not to delete!
+
+    !cemser - CANCER! noncontagious of course.
+
+    !delete [n] - deletes the last n messages :c
