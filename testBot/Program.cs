@@ -154,6 +154,7 @@ namespace testBot
 
                     case "!clear":
                         var messages = await context.Channel.GetMessagesAsync(int.Parse(parts[1]) + 1).Flatten();
+                        await context.Channel.SendMessageAsync(int.Parse(parts[1]) + " messages are getting deleted.");
                         await context.Channel.DeleteMessagesAsync(messages);
                         await context.Channel.SendMessageAsync(int.Parse(parts[1]) + " messages deleted.");
                         Console.WriteLine(msg.Author.Username + " deleted " + int.Parse(parts[1]) + " messages.");
