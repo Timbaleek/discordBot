@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Reflection;
 using Discord;
@@ -82,18 +83,18 @@ namespace testBot
                         {
                             String[] imgs1 = Directory.GetFiles(imagesPath);
                             Random rnd1 = new Random();
-                            await context.Channel.SendFileAsync(imgs1[rnd1.Next(0, imgs1.Length)] + ".png");
+                            await context.Channel.SendFileAsync(imgs1[rnd1.Next(0, imgs1.Length)]);
                             break;
                         }
                         switch (parts[1])
                         {
-                            case "add":
+                            case "add": //add a meme
                                 var webClient = new WebClient();
                                 if (parts.Length == 4)
                                 {
                                     Console.WriteLine("Downloading " + parts[2] + " to " + imagesPath + parts[3] + ".png" + "...");
                                     webClient.DownloadFile(parts[2], imagesPath + parts[3] + ".png");
-                                    await context.Channel.SendMessageAsync("`" + parts[3] + ".png" + "` uploaded!");
+                                    await context.Channel.SendMessageAsync("`" + parts[3    ] + ".png" + "` added!");
                                 }
                                 else
                                 {
@@ -101,12 +102,15 @@ namespace testBot
                                     //var parts = url.Split('/');
 
                                     var urlParts = parts[2].Split('/');
-                                    Console.WriteLine("Downloading " + parts[2] + " to " + imagesPath + urlParts[urlParts.Length - 1] + "...");
-                                    webClient.DownloadFile(parts[2], imagesPath + urlParts[urlParts.Length - 1]);
+                                    String imgName = urlParts[urlParts.Length - 1];
+                                    String pngName = imgName.Remove(imgName.Length - 4) + ".png";
+                                    Console.WriteLine("Downloading " + parts[2] + " to " + imagesPath + pngName + "...");
+                                    webClient.DownloadFile(parts[2], imagesPath + pngName);
+                                    await context.Channel.SendMessageAsync("`" + pngName + "` added!");
                                 }
 
                                 break;
-                            case "remove":
+                            case "remove": //remove a meme
                                 try
                                 {
                                     File.Delete(imagesPath + parts[2] + ".png");
@@ -119,16 +123,19 @@ namespace testBot
                                 }
                                 break;
 
-                            case "list":
+                            case "list": //list all memes
                                 String[] imgNames = Directory.GetFiles(imagesPath);
+                                String listString = "";
                                 for (int i = 0; i < imgNames.Length; i++)
                                 {
                                     String imgName = imgNames[i].Substring(imagesPath.Length);
-                                    await context.Channel.SendMessageAsync(imgName);
+                                    imgName = imgName.Remove(imgName.Length - 4);
+                                    listString += imgName + "\n";
                                 }
+                                await context.Channel.SendMessageAsync(listString);
                                 break;
 
-                            default:
+                            default: //send meme with name
                                 try
                                 {
                                     await context.Channel.SendFileAsync(imagesPath + parts[1] + ".png");
@@ -147,7 +154,11 @@ namespace testBot
                         await context.Channel.SendFileAsync(imgs2[rnd2.Next(0, imgs2.Length)]);
                         break;
                     case "!help":
-                        await context.Channel.SendMessageAsync("!sieg" + "\n" + "!addmeme URL name.ending" + "\n" + "!meme name (if left empty: random meme)" + "\n" + "!listmemes" + "\n" + "!cemser" + "\n");
+                        String helpString = "";
+                        foreach (String line in File.ReadAllLines(Path.GetFullPath(@"..\..") + "\\help.txt")){
+                            helpString += line + "\n";
+                        }
+                        await context.Channel.SendMessageAsync("```" + helpString + "```");
                         break;
 
                 }
@@ -161,6 +172,7 @@ namespace testBot
                 //    Console.WriteLine(false);
                 //}
 
+                Thread.Sleep(2000);
                 await msg.DeleteAsync();
             }
 
