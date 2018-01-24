@@ -102,12 +102,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="cemser\" />
     <Folder Include="images\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="cemser\hanzo.png" />
-    <Content Include="cemser\poodelric.png" />
-    <Content Include="cemser\tracer.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
