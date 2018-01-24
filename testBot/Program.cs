@@ -152,7 +152,8 @@ namespace testBot
                         await context.Channel.SendFileAsync(imgs2[rnd2.Next(0, imgs2.Length)]);
                         break;
                     case "!clear":
-                        await context.Channel.DeleteMessagesAsync();
+                        var messages = await context.Channel.GetMessagesAsync(int.Parse(parts[1]) + 1).Flatten();
+                        await context.Channel.DeleteMessagesAsync(messages);
                         break;
                     case "!whisper":
                         await msg.Author.SendMessageAsync(msg.Author.Username + " whispered to you: " + parts[1]);
