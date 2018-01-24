@@ -60,14 +60,12 @@ namespace testBot
 
             if (!(Directory.Exists(imagesPath)))
             {
-                Console.WriteLine(imagesPath);
-                Console.WriteLine("Wrong Directory");
+                Console.WriteLine("Wrong Directory: " + imagesPath);
             }
 
             if (!(Directory.Exists(cemserPath)))
             {
-                Console.WriteLine(cemserPath);
-                Console.WriteLine("Wrong Directory");
+                Console.WriteLine("Wrong Directory: " + cemserPath);
             }
 
             if (msg.HasCharPrefix('!', ref argPos) /*|| message.HasMentionPrefix(client.CurrentUser, ref argPos))*/)
@@ -152,6 +150,9 @@ namespace testBot
                         String[] imgs2 = Directory.GetFiles(cemserPath);
                         Random rnd2 = new Random();
                         await context.Channel.SendFileAsync(imgs2[rnd2.Next(0, imgs2.Length)]);
+                        break;
+                    case "!clear":
+                        //context.Channel.DeleteMessagesAsync(parts[1]);
                         break;
                     case "!help":
                         String helpString = "";
