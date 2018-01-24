@@ -153,7 +153,12 @@ namespace testBot
                         break;
 
                     case "!clear":
+<<<<<<< HEAD
 
+=======
+                        var messages = await context.Channel.GetMessagesAsync(int.Parse(parts[1]) + 1).Flatten();
+                        await context.Channel.DeleteMessagesAsync(messages);
+>>>>>>> cde9bec40bae05da65544bf59917628a2ba5d5b1
                         break;
                     case "!whisper":
                         
