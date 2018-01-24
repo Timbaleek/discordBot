@@ -182,7 +182,6 @@ namespace testBot
                 //    Console.WriteLine(false);
                 //}
 
-                Thread.Sleep(2000);
                 await msg.DeleteAsync();
             }
 
