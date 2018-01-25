@@ -151,15 +151,27 @@ namespace testBot
                         Random rnd2 = new Random();
                         await context.Channel.SendFileAsync(imgs2[rnd2.Next(0, imgs2.Length)]);
                         break;
-
                     case "!clear":
-                        var messages = await context.Channel.GetMessagesAsync(int.Parse(parts[1]) + 1).Flatten();
-                        await context.Channel.TriggerTypingAsync();
-                        await context.Channel.DeleteMessagesAsync(messages);
-                        var response = await context.Channel.SendMessageAsync(int.Parse(parts[1]) + " messages deleted.");
-                        Console.WriteLine(msg.Author.Username + " deleted " + int.Parse(parts[1]) + " messages.");
-                        Thread.Sleep(1000);
-                        await response.DeleteAsync();
+                        if(parts.Length == 2){
+                            var messages = await context.Channel.GetMessagesAsync(int.Parse(parts[1]) + 1).Flatten();
+                            await context.Channel.TriggerTypingAsync();
+                            await context.Channel.DeleteMessagesAsync(messages);
+                            var response = await context.Channel.SendMessageAsync(int.Parse(parts[1]) + " messages deleted.");
+                            Console.WriteLine(msg.Author.Username + " deleted " + int.Parse(parts[1]) + " messages.");
+                            Thread.Sleep(1000);
+                            await response.DeleteAsync();
+                        } else if(parts[1] == "bot")
+                        {
+                            for(int i = 0; i < int.Parse(parts[2]); i++)
+                            {
+                                var message = await msg.Channel.GetMessageAsync(context.Channel.Id);
+                                if (message.Author.IsBot)
+                                {
+                                    await message.DeleteAsync();
+                                }
+                            }
+                        }
+
                         break;
                     case "!brätz":
                         //await ;
