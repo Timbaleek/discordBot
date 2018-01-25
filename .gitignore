@@ -13,7 +13,7 @@ testBot/images/
 !testBot/images/README.md
 testBot/cemser/
 !testBot/cemser/README.md
-testBot/token.conf
+!testBot/token.txt
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
