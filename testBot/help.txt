@@ -6,4 +6,8 @@ Commands:
 
     !cemser - CANCER! noncontagious of course.
 
-    !delete [n] - deletes the last n messages :c
+    !clear [n] - deletes the last n messages :c
+	
+	!brätz [thing to brätz]
+	
+	!sendNudes 

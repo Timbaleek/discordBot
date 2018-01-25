@@ -13,7 +13,6 @@ namespace testBot
 {
     class Program
     {
-
         private CommandService commands;
         private DiscordSocketClient client;
         private IServiceProvider services;
