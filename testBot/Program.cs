@@ -73,9 +73,6 @@ namespace testBot
                 var parts = msg.Content.Split(' ');
                 switch (parts[0])
                 {
-                    case "!sieg":
-                        await context.Channel.SendMessageAsync("HEIL!");
-                        break;
                     case "!meme":
                         if (parts.Length == 1)
                         {
@@ -147,6 +144,7 @@ namespace testBot
                         break;
 
                     case "!cemser":
+                        Console.WriteLine(msg.Author.Username + " requested Cemser");
                         String[] imgs2 = Directory.GetFiles(cemserPath);
                         Random rnd2 = new Random();
                         await context.Channel.SendFileAsync(imgs2[rnd2.Next(0, imgs2.Length)]);
@@ -162,12 +160,14 @@ namespace testBot
                         await response.DeleteAsync();
                         break;
                     case "!brätz":
+                        Console.WriteLine(msg.Author.Username + " brätzed " + parts[1]);
                         //await ;
                         //await context.User.GetOrCreateDMChannelAsync();
                         await context.Channel.SendMessageAsync(parts[1] + ", get brätzt by " + msg.Author.Username);
                         //await context.Channel.GetUserAsync().SendMessageAsync(msg.Author.Username + " whispered to you: " + parts[1]);
                         break;
                     case "!sendNudes":
+                        Console.WriteLine(msg.Author.Username + " requested Nudes! o.o");
                         await msg.Author.SendMessageAsync("Here you go, " + msg.Author.Username + ": (.)(.)");
                         await context.Channel.SendMessageAsync("This message was sent: " + msg.Timestamp.AddYears(100));
                         break;
@@ -176,7 +176,7 @@ namespace testBot
                         foreach (String line in File.ReadAllLines(Path.GetFullPath(@"..\..") + "\\help.txt")){
                             helpString += line + "\n";
                         }
-                        //Console.WriteLine("Help requested");
+                        Console.WriteLine(msg.Author.Username + " requested Help");
                         await context.Channel.SendMessageAsync("```" + helpString + "```");
                         break;
 
