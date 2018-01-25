@@ -22,9 +22,9 @@ namespace testBot
 
         public async Task StartAsync()
         {
-            var dic = (File.ReadAllLines(Path.GetFullPath(@"..\..") + "\\testBot.conf")).Select(l => l.Split(new[] { '=' })).ToDictionary(s => s[0].Trim(), s => s[1].Trim());
+            var dic = (File.ReadAllLines(Path.GetFullPath(@"..\..") + "\\token.conf")).Select(l => l.Split(new[] { '=' })).ToDictionary(s => s[0].Trim(), s => s[1].Trim());
             string token = dic["token"];
-            Console.WriteLine("Logged in as: " + token);
+            Console.WriteLine("Logging in as: " + token);
 
             client = new DiscordSocketClient();
             commands = new CommandService();
