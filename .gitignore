@@ -13,7 +13,8 @@ testBot/images/
 !testBot/images/README.md
 testBot/cemser/
 !testBot/cemser/README.md
-testBot/credentials
+!testBot/credentials
+!testBot/credentials/README.md
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
