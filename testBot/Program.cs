@@ -154,10 +154,12 @@ namespace testBot
 
                     case "!clear":
                         var messages = await context.Channel.GetMessagesAsync(int.Parse(parts[1]) + 1).Flatten();
-                        await context.Channel.SendMessageAsync(int.Parse(parts[1]) + " messages are getting deleted.");
+                        await context.Channel.TriggerTypingAsync();
                         await context.Channel.DeleteMessagesAsync(messages);
-                        await context.Channel.SendMessageAsync(int.Parse(parts[1]) + " messages deleted.");
+                        var response = await context.Channel.SendMessageAsync(int.Parse(parts[1]) + " messages deleted.");
                         Console.WriteLine(msg.Author.Username + " deleted " + int.Parse(parts[1]) + " messages.");
+                        Thread.Sleep(1000);
+                        await response.DeleteAsync();
                         break;
                     case "!brätz":
                         //await ;
@@ -174,7 +176,7 @@ namespace testBot
                         foreach (String line in File.ReadAllLines(Path.GetFullPath(@"..\..") + "\\help.txt")){
                             helpString += line + "\n";
                         }
-                        Console.WriteLine("Help requested");
+                        //Console.WriteLine("Help requested");
                         await context.Channel.SendMessageAsync("```" + helpString + "```");
                         break;
 
@@ -188,7 +190,7 @@ namespace testBot
                 //    await context.Channel.SendMessageAsync(result.ErrorReason);
                 //    Console.WriteLine(false);
                 //}
-
+                Thread.Sleep(2000);
                 await msg.DeleteAsync();
             }
 
