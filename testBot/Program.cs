@@ -163,7 +163,7 @@ namespace testBot
                         break;
                     case "!brätz":
                         //await ;
-                        //await context.User.GetOrCreateDMChannelAsync()
+                        //await context.User.GetOrCreateDMChannelAsync();
                         await context.Channel.SendMessageAsync(parts[1] + ", get brätzt by " + msg.Author.Username);
                         //await context.Channel.GetUserAsync().SendMessageAsync(msg.Author.Username + " whispered to you: " + parts[1]);
                         break;
