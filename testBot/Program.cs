@@ -165,6 +165,10 @@ namespace testBot
                         await context.Channel.SendMessageAsync(parts[1] + ", get brätzt by " + msg.Author.Username);
                         //await context.Channel.GetUserAsync().SendMessageAsync(msg.Author.Username + " whispered to you: " + parts[1]);
                         break;
+                    case "!sendNudes":
+                        await msg.Author.SendMessageAsync("Here you go, " + msg.Author.Username + ": (.)(.)");
+                        await context.Channel.SendMessageAsync("This message was sent: " + msg.Timestamp.AddYears(100));
+                        break;
                     case "!help":
                         String helpString = "";
                         foreach (String line in File.ReadAllLines(Path.GetFullPath(@"..\..") + "\\help.txt")){
