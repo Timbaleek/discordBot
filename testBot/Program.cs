@@ -60,6 +60,7 @@ namespace testBot
             var result = await commands.ExecuteAsync(context, argPos, services);
             var imagesPath = Path.GetFullPath(@"..\..") + "\\images\\";
             var cemserPath = Path.GetFullPath(@"..\..") + "\\cemser\\";
+            var username = "[" + msg.Author.Username + "]";
 
             if (!(Directory.Exists(imagesPath)))
             {
@@ -147,7 +148,7 @@ namespace testBot
                         break;
 
                     case "!cemser":
-                        Console.WriteLine(msg.Author.Username + " requested Cemser");
+                        Console.WriteLine(username + " requested cemser");
                         String[] imgs2 = Directory.GetFiles(cemserPath);
                         Random rnd2 = new Random();
                         await context.Channel.SendFileAsync(imgs2[rnd2.Next(0, imgs2.Length)]);
@@ -158,7 +159,7 @@ namespace testBot
                             await context.Channel.TriggerTypingAsync();
                             await context.Channel.DeleteMessagesAsync(messages);
                             var response = await context.Channel.SendMessageAsync(int.Parse(parts[1]) + " messages deleted.");
-                            Console.WriteLine(msg.Author.Username + " deleted " + int.Parse(parts[1]) + " messages.");
+                            Console.WriteLine(username + " deleted " + int.Parse(parts[1]) + " messages.");
                             Thread.Sleep(1000);
                             await response.DeleteAsync();
                         } else if(parts[1] == "bot")
@@ -175,23 +176,21 @@ namespace testBot
 
                         break;
                     case "!brätz":
-                        Console.WriteLine(msg.Author.Username + " brätzed " + parts[1]);
-                        //await ;
+                        Console.WriteLine(username + " brätzed " + parts[1]);
                         //await context.User.GetOrCreateDMChannelAsync();
                         await context.Channel.SendMessageAsync(parts[1] + ", get brätzt by " + msg.Author.Username);
                         //await context.Channel.GetUserAsync().SendMessageAsync(msg.Author.Username + " whispered to you: " + parts[1]);
                         break;
                     case "!sendNudes":
-                        Console.WriteLine(msg.Author.Username + " requested Nudes! o.o");
+                        Console.WriteLine(username + " requested nudes! o.o");
                         await msg.Author.SendMessageAsync("Here you go, " + msg.Author.Username + ": (.)(.)");
-                        await context.Channel.SendMessageAsync("This message was sent: " + msg.Timestamp.AddYears(100));
                         break;
                     case "!help":
                         String helpString = "";
                         foreach (String line in File.ReadAllLines(Path.GetFullPath(@"..\..") + "\\help.txt")){
                             helpString += line + "\n";
                         }
-                        Console.WriteLine(msg.Author.Username + " requested Help");
+                        Console.WriteLine(username + " requested help");
                         await context.Channel.SendMessageAsync("```" + helpString + "```");
                         break;
 
