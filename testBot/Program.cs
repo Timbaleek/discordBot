@@ -191,7 +191,7 @@ namespace testBot
                         foreach (String line in File.ReadAllLines(Path.GetFullPath(@"..\..") + "\\help.txt")){
                             helpString += line + "\n";
                         }
-                        Console.WriteLine(msg.Author.Username + " requested Help");
+                        Console.WriteLine(msg.Author.Username + " requested help");
                         await context.Channel.SendMessageAsync("```" + helpString + "```");
                         break;
 
