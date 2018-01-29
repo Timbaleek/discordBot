@@ -197,14 +197,12 @@ namespace testBot
                     case "!spam":
                         string str = "";
                         int argumentCount = 2;
-                        //ulong name = ulong.Parse(parts[1]);
-                        //var uname = context.Channel.GetUsersAsync(Discord.CacheMode.AllowDownload, name);
-                        //var user = context.Channel.GetUserAsync(name);
-                        for (int i = argumentCount; i < parts.Length; i++) {str += parts[i]; }
-                        ulong uname = 210767376268918785;
-                        await context.Channel.GetUsersAsync(uname);
-                        Console.WriteLine(str);
-                        Console.WriteLine(msg.Author.Id);
+                        for (int i = argumentCount; i < parts.Length; i++) {str += parts[i] + " "; }
+                        string trimmed = parts[1].Trim(new Char[] { '<', '>', '@', '!' });
+                        ulong uname = ulong.Parse(trimmed);
+                        var u = await context.Channel.GetUserAsync(uname);
+                        Console.WriteLine(u.Username);
+                        await u.SendMessageAsync(str);
                         break;
 
                     case "!help": //display help file
