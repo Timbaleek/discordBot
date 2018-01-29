@@ -201,7 +201,7 @@ namespace testBot
                         string trimmed = parts[1].Trim(new Char[] { '<', '>', '@', '!' });
                         ulong uname = ulong.Parse(trimmed);
                         var u = await context.Channel.GetUserAsync(uname);
-                        Console.WriteLine(u.Username);
+                        Console.WriteLine(username + " spammed " + u.Username + " with messsage: " + str);
                         await u.SendMessageAsync(str);
                         break;
 
