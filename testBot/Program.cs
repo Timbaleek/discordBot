@@ -196,13 +196,18 @@ namespace testBot
                         break;
                     case "!spam":
                         string str = "";
-                        int argumentCount = 2;
+                        int argumentCount = 3;
+                        int num2 = int.Parse(parts[2]);
                         for (int i = argumentCount; i < parts.Length; i++) {str += parts[i] + " "; }
                         string trimmed = parts[1].Trim(new Char[] { '<', '>', '@', '!' });
                         ulong uname = ulong.Parse(trimmed);
                         var u = await context.Channel.GetUserAsync(uname);
-                        Console.WriteLine(username + " spammed " + u.Username + " with messsage: " + str);
-                        await u.SendMessageAsync(str);
+                        Console.WriteLine(username + " spammed " + u.Username + " " + num2 + " time(s) " + "with messsage: " + str);
+                        for (int i = 0; i < num2; i++)
+                        {
+                            await context.Channel.TriggerTypingAsync();
+                            await u.SendMessageAsync(str);
+                        }
                         break;
 
                     case "!help": //display help file
