@@ -181,6 +181,7 @@ namespace testBot
                     case "!sendNudes": //send "(.)(.)" in PM to Author
                         Console.WriteLine(username + " requested nudes! o.o");
                         await msg.Author.SendMessageAsync("Here you go, " + msg.Author.Username + ": (.)(.)");
+                        Console.WriteLine(msg.Author);
                         break;
                     case "!watch": // tell [y] to watch [x]
                         var output = "";
@@ -193,6 +194,19 @@ namespace testBot
                             await context.Channel.TriggerTypingAsync();
                             await context.Channel.SendMessageAsync(output); }
                         break;
+                    case "!spam":
+                        string str = "";
+                        int argumentCount = 2;
+                        //ulong name = ulong.Parse(parts[1]);
+                        //var uname = context.Channel.GetUsersAsync(Discord.CacheMode.AllowDownload, name);
+                        //var user = context.Channel.GetUserAsync(name);
+                        for (int i = argumentCount; i < parts.Length; i++) {str += parts[i]; }
+                        ulong uname = 210767376268918785;
+                        await context.Channel.GetUsersAsync(uname);
+                        Console.WriteLine(str);
+                        Console.WriteLine(msg.Author.Id);
+                        break;
+
                     case "!help": //display help file
                         String helpString = "";
                         foreach (String line in File.ReadAllLines(Path.GetFullPath(@"..\..") + "\\help.txt")){
