@@ -97,9 +97,6 @@ namespace testBot
                                 }
                                 else
                                 {
-                                    //var url = msg.Content.Substring(8);
-                                    //var parts = url.Split('/');
-
                                     var urlParts = parts[2].Split('/');
                                     String imgName = urlParts[urlParts.Length - 1];
                                     String pngName = imgName.Remove(imgName.Length - 4) + ".png";
@@ -147,13 +144,13 @@ namespace testBot
                         }
                         break;
 
-                    case "!cemser":
+                    case "!cemser": //random image out of cemser folder
                         Console.WriteLine(username + " requested cemser");
                         String[] imgs2 = Directory.GetFiles(cemserPath);
                         Random rnd2 = new Random();
                         await context.Channel.SendFileAsync(imgs2[rnd2.Next(0, imgs2.Length)]);
                         break;
-                    case "!clear":
+                    case "!clear": //clear the [X] last messages
                         if(parts.Length == 2){
                             var messages = await context.Channel.GetMessagesAsync(int.Parse(parts[1]) + 1).Flatten();
                             await context.Channel.TriggerTypingAsync();
@@ -175,17 +172,17 @@ namespace testBot
                         }
 
                         break;
-                    case "!brätz":
+                    case "!brätz": //brätz [x]
                         Console.WriteLine(username + " brätzed " + parts[1]);
                         //await context.User.GetOrCreateDMChannelAsync();
                         await context.Channel.SendMessageAsync(parts[1] + ", get brätzt by " + msg.Author.Username);
                         //await context.Channel.GetUserAsync().SendMessageAsync(msg.Author.Username + " whispered to you: " + parts[1]);
                         break;
-                    case "!sendNudes":
+                    case "!sendNudes": //send "(.)(.)" in PM to Author
                         Console.WriteLine(username + " requested nudes! o.o");
                         await msg.Author.SendMessageAsync("Here you go, " + msg.Author.Username + ": (.)(.)");
                         break;
-                    case "!help":
+                    case "!help": //display halp file
                         String helpString = "";
                         foreach (String line in File.ReadAllLines(Path.GetFullPath(@"..\..") + "\\help.txt")){
                             helpString += line + "\n";
