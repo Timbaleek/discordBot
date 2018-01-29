@@ -200,6 +200,7 @@ namespace testBot
                         foreach (String line in File.ReadAllLines(Path.GetFullPath(@"..\..") + "\\help.txt")){
                             helpString += line + "\n";
                         }
+<<<<<<< HEAD
 
                         Console.WriteLine(msg.Author.Username + " requested help");
 
