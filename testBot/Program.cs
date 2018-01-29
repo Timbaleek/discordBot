@@ -182,10 +182,7 @@ namespace testBot
                         Console.WriteLine(username + " requested nudes! o.o");
                         await msg.Author.SendMessageAsync("Here you go, " + msg.Author.Username + ": (.)(.)");
                         break;
-<<<<<<< HEAD
-                    case "!help": //display halp file
-=======
-                    case "!watch":
+                    case "!watch": // tell [y] to watch [x]
                         var output = "";
                         int num;
                         output += parts[2] + " watch " + parts[1];
@@ -194,9 +191,7 @@ namespace testBot
                         Console.WriteLine(username + " told " + parts[2] + " to watch " + parts[1] + " " + num + " time(s)");
                         for (int i = 1; i <= num; i++) { await context.Channel.SendMessageAsync(output); }
                         break;
-
-                    case "!help":
->>>>>>> 8f6e2b27ca8b6c433c106a6adb355ebe894b55c9
+                    case "!help": //display help file
                         String helpString = "";
                         foreach (String line in File.ReadAllLines(Path.GetFullPath(@"..\..") + "\\help.txt")){
                             helpString += line + "\n";
