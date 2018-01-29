@@ -189,7 +189,9 @@ namespace testBot
                         if (parts.Length == 4) { num = int.Parse(parts[3]); }
                         else { num = 1; }
                         Console.WriteLine(username + " told " + parts[2] + " to watch " + parts[1] + " " + num + " time(s)");
-                        for (int i = 1; i <= num; i++) { await context.Channel.SendMessageAsync(output); }
+                        for (int i = 1; i <= num; i++) {
+                            await context.Channel.TriggerTypingAsync();
+                            await context.Channel.SendMessageAsync(output); }
                         break;
                     case "!help": //display help file
                         String helpString = "";
