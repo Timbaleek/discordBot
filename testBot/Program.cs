@@ -201,7 +201,7 @@ namespace testBot
                             helpString += line + "\n";
                         }
 
-                        Console.WriteLine(msg.Author.Username + " requested help");
+                        Console.WriteLine(username + " requested help");
 
                         await context.Channel.SendMessageAsync("```" + helpString + "```");
                         break;
