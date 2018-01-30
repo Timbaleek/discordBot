@@ -29,10 +29,7 @@ namespace testBot
             client = new DiscordSocketClient();
             commands = new CommandService();
 
-            services = new ServiceCollection()
-                .AddSingleton(client)
-                .AddSingleton(commands)
-                .BuildServiceProvider();
+            services = new ServiceCollection().AddSingleton(client).AddSingleton(commands).BuildServiceProvider();
 
             await InstallCommandsAsync();
 
@@ -62,15 +59,8 @@ namespace testBot
             var cemserPath = Path.GetFullPath(@"..\..") + "\\cemser\\";
             var username = "[" + msg.Author.Username + "]";
 
-            if (!(Directory.Exists(imagesPath)))
-            {
-                Console.WriteLine("Wrong Directory: " + imagesPath);
-            }
-
-            if (!(Directory.Exists(cemserPath)))
-            {
-                Console.WriteLine("Wrong Directory: " + cemserPath);
-            }
+            if (!(Directory.Exists(imagesPath))) { Console.WriteLine("Wrong Directory: " + imagesPath); }
+            if (!(Directory.Exists(cemserPath))) { Console.WriteLine("Wrong Directory: " + cemserPath); }
 
             if (msg.HasCharPrefix('!', ref argPos) /*|| message.HasMentionPrefix(client.CurrentUser, ref argPos))*/)
             {
