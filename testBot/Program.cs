@@ -194,7 +194,7 @@ namespace testBot
                             await context.Channel.TriggerTypingAsync();
                             await context.Channel.SendMessageAsync(output); }
                         break;
-                    case "!spam":
+                    case "!spam": // send PMs with [z] text [y] times to [x]  
                         string str = "";
                         int argumentCount = 3;
                         int num2 = int.Parse(parts[2]);
