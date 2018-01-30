@@ -10,4 +10,8 @@ Commands:
 	
 	!brätz [thing to brätz]
 	
-	!sendNudes 
+	!sendNudes
+	
+	!watch <LINK> <@USER> <N>
+	
+	!spam <@USER> <N> <MESSAGE>
